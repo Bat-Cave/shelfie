@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class Product extends Component {
   render(){
@@ -10,7 +11,7 @@ export default class Product extends Component {
           <p>{this.props.price}</p>
           <div className='product-controls'>
             <button onClick={() => this.props.deleteProductFn(this.props.id)}>Delete</button>
-            <button onClick={() => this.props.getSelectedFn(this.props.id)}>Edit</button>
+            <Link to={`/edit/${this.props.id}`}><button>Edit</button></Link>
           </div>
         </div>
       </div>

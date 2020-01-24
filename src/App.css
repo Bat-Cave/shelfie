@@ -5,30 +5,50 @@
 }
 
 body{
-  background: lightskyblue;
+  background: white;
   overflow-x: hidden;
+  display: flex;
+  justify-content: center;
 }
 
 .header-container{
   height: 75px;
   width: 100vw;
-  background: lightsalmon;
+  background: #ab2a19;
+  padding: 0 10%;
+  display: flex;
+  align-items: center;
+}
+
+.header-container img {
+  margin-right: 40px;
+}
+
+.header-container a {
+  text-decoration: none;
+  color: black;
+  border: none;
+  background: #ed6b5a;
+  height: 30px;
+  padding: 2px 8px;
+  margin: 0 8px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .dashboard-container {
   width: 100vw;
   height: calc(100vh - 75x);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 50px 10%;
 }
 
 .product-container{
   width: 45%;
   min-height: calc(100vh - 175px);
-  background: lightgreen;
   border-radius: 5px;
-  padding: 4px 8px;
+  padding: 0 8px;
   display: flex;
   flex-direction: column;
 }
@@ -37,9 +57,9 @@ body{
   width: 100%;
   height: 200px;
   border-radius: 5px;
-  background: lightsteelblue;
+  background: #d34735;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   padding: 8px;
   margin: 4px 0;
 }
@@ -59,13 +79,11 @@ body{
 }
 
 .form-container{
-  width: 45%;
+  width: 500px;
   height: calc(100vh - 175px);
   display: flex;
   flex-direction: column;
-  position: sticky;
-  top: 125px;
-  background: lightgoldenrodyellow;
+  background: #3ad886;
   border-radius: 5px;
   padding: 8px;
 }
@@ -73,16 +91,16 @@ body{
 .image-preview{
   width: 100%;
   height: 40%;
-  background: lightpink;
   margin: 0 0 16px 0;
   padding: 8px;
   border-radius: 5px;
+  display: block;
+  justify-content: center;
 }
 
 .form-input{
   width: 100%;
   height: 15%;
-  background: lightseagreen;
   margin: 4px 0;
 }
 
@@ -93,4 +111,22 @@ body{
 .button-container{
   display: flex;
   justify-content: space-between;
+}
+
+button{
+  border: none;
+  background: #ed6b5a;
+  height: 30px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.product-controls button{
+  border: none;
+  background: #3ad886;
+  height: 30px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  cursor: pointer;
 }

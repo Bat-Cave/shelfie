@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Form from '../Form/Form';
 import Product from'../Product/Product';
 import axios from 'axios';
 
@@ -7,17 +6,39 @@ export default class Dashboard extends Component {
   constructor(props){
     super(props)
 
+    this.state = {
+      productList: []
+    }
+
     this.deleteProduct = this.deleteProduct.bind(this);
+  }
+
+  componentDidMount(){
+    this.getProducts();
+  }
+
+  componentDidUpdate(){
+    this.getProducts();
+  }
+
+  getProducts = () => {
+    axios.get('http://localhost:5050/api/inventory')
+    .then(res => {
+      this.setState({productList: res.data})
+    })
+    .catch(err => {
+      console.log('An error occurred when requesting the product list.')
+    })
   }
 
   deleteProduct(id){
     axios.delete(`http://localhost:5050/api/product/${id}`).then(res => {
-      this.props.getProductsFn();
+      this.getProducts()
     }).catch( err => console.log(err));
   }
 
   render(){
-    const productListMapped = this.props.productList.map((product, i) => {
+    const productListMapped = this.state.productList.map((product, i) => {
       return(
         <Product 
           key={i}
@@ -26,7 +47,6 @@ export default class Dashboard extends Component {
           name={product.name}
           price={product.price}
           deleteProductFn={this.deleteProduct}
-          getSelectedFn={this.props.getSelectedFn}
         />
       )
     })
@@ -36,10 +56,6 @@ export default class Dashboard extends Component {
         <div className='product-container'>
           {productListMapped}
         </div>
-        <Form 
-          getProductsFn={this.props.getProductsFn}
-          selected={this.props.selected}
-        /> 
       </div>
     )
   }
