@@ -7,18 +7,22 @@ export default class Dashboard extends Component {
     super(props)
 
     this.state = {
-      productList: []
+      productList: [],
+      updated: false
     }
 
     this.deleteProduct = this.deleteProduct.bind(this);
   }
 
   componentDidMount(){
+    console.log('Dashboard component mounted.')
     this.getProducts();
   }
 
-  componentDidUpdate(){
-    this.getProducts();
+  componentDidUpdate(prevProps, prevState){
+    if(prevState.updated !== this.state.updated){
+      this.getProducts();
+    }
   }
 
   getProducts = () => {
@@ -29,12 +33,15 @@ export default class Dashboard extends Component {
     .catch(err => {
       console.log('An error occurred when requesting the product list.')
     })
+    console.log('Got products')
+    this.setState({updated: true})
   }
 
   deleteProduct(id){
     axios.delete(`http://localhost:5050/api/product/${id}`).then(res => {
       this.getProducts()
     }).catch( err => console.log(err));
+    console.log(`Removed product: ${id}`)
   }
 
   render(){

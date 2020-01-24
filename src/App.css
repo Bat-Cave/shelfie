@@ -21,7 +21,12 @@ body{
 }
 
 .header-container img {
+  margin-right: 10px;
+}
+
+.header-container h2 {
   margin-right: 40px;
+  color: white;
 }
 
 .header-container a {
@@ -62,6 +67,11 @@ body{
   justify-content: center;
   padding: 8px;
   margin: 4px 0;
+}
+
+.product img{
+  max-width: 250px;
+  
 }
 
 .product-info{

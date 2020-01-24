@@ -7,8 +7,9 @@ export default class Header extends Component {
     return(
       <div className='header-container'>
         <img src={shelfie} alt='Shelfie Logo'/>
-        <Link to='/'><a>Dashboard</a></Link>
-        <Link to='/add'><a>Add</a></Link>
+        <h2>SHELFIE</h2>
+        <Link to='/'><p>Dashboard</p></Link>
+        <Link to='/add'><p>Add</p></Link>
       </div>
     )
   }

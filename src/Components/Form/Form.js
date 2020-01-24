@@ -3,8 +3,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 export default class Form extends Component {
-  _isMounted = false;
-
   constructor(props){
     super(props)
 
@@ -17,7 +15,6 @@ export default class Form extends Component {
   }
 
   handleInput(name, val){
-    console.log(this.props.match);
     this.setState({[name]: val});
   }
 
@@ -27,39 +24,32 @@ export default class Form extends Component {
 
   createProduct(){
     const { imgInput, nameInput, priceInput } = this.state;
-
+    this.cancelInput();
     axios.post('http://localhost:5050/api/product', {img: imgInput, name: nameInput, price: priceInput}).then(res => {
-      this.cancelInput();
     }).catch(err => console.log(err));
-
+    console.log(`Added product to inventory list`)
   }
 
   updateProduct(){
     const { imgInput, nameInput, priceInput } = this.state;
+    this.cancelInput();
     axios.put(`http://localhost:5050/api/product/${this.props.match.params.id}`, {img: imgInput, name: nameInput, price: priceInput}).then(res => {
-      this.cancelInput();
     }).catch(err => console.log(err));
-
+    console.log(`Sent ${nameInput} to be updated`)
   }
 
   componentDidMount(){
     this._isMounted = true;
     if(this.props.match.params.id){
       axios.get(`http://localhost:5050/api/product/${this.props.match.params.id}`).then(res => {
-        if(this._isMounted){
           this.setState({
             editing: true,
             imgInput: res.data[0].img,
             nameInput: res.data[0].name,
             priceInput: res.data[0].price,
           })
-        }
       })
     }
-  }
-
-  componentWillUnmount(){
-    this._isMounted = false;
   }
 
   componentDidUpdate(prevProps, prevState){
@@ -68,6 +58,7 @@ export default class Form extends Component {
           imgInput: '',
           nameInput: '',
           priceInput: '',
+          editing: false
         })
     }
   }
