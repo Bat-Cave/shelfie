@@ -15,6 +15,7 @@ export default class Dashboard extends Component {
   }
 
   componentDidMount(){
+    this.setState({updated: false})
     console.log('Dashboard component mounted.')
     this.getProducts();
   }
